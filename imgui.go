@@ -254,7 +254,7 @@ func CalcTextSize(text string, hideTextAfterDoubleHash bool, wrapWidth float32) 
 }
 //ImGui::SetNextItemWidth set next item width
 func SetNextItemWidth(itemWidth float32) {
-	C.iggSetNextItemWidth(C.float(width))
+	C.iggSetNextItemWidth(C.float(itemWidth))
 }
 
 // PushItemWidth sets width of items for the common item+label case, in pixels.
