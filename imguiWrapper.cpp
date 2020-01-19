@@ -194,6 +194,11 @@ void iggCalcTextSize(const char* text, int length, IggBool hide_text_after_doubl
     exportValue(*value, ImGui::CalcTextSize(text, text + length, hide_text_after_double_hash, wrap_width));
 }
 
+void iggSetNextItemWidth(float width)
+{
+   ImGui::SetNextItemWidth(width);
+}
+
 void iggPushItemWidth(float width)
 {
    ImGui::PushItemWidth(width);

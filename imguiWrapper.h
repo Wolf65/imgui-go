@@ -51,6 +51,7 @@ extern void iggCalcTextSize(const char* text, int length, IggBool hide_text_afte
 
 extern float iggGetFontSize();
 
+extern void iggSetNextItemWidth(float width);
 extern void iggPushItemWidth(float width);
 extern void iggPopItemWidth(void);
 extern float iggCalcItemWidth(void);
