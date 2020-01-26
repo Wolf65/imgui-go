@@ -550,6 +550,33 @@ func InputTextMultiline(label string, text *string) bool {
 	return InputTextMultilineV(label, text, Vec2{}, 0, nil)
 }
 
+// TODO: description
+func InputTextWithHintV(label, hint string, text *string, flags int, cb InputTextCallback) bool {
+	if text == nil {
+		panic("text can't be nil")
+	}
+	labelArg, labelFin := wrapString(label)
+	defer labelFin()
+	hintArg, hintFin := wrapString(hint)
+	defer hintFin()
+
+	state := newInputTextState(*text, cb)
+	defer func() {
+		*text = state.buf.toGo()
+		state.release()
+	}()
+
+	return C.iggInputTextWithHint(labelArg, hintArg, (*C.char)(state.buf.ptr), C.uint(state.buf.size),
+		C.int(flags|inputTextFlagsCallbackResize), state.key) != 0
+}
+
+// InputTextWithHint calls InputTextWithHintV(label, hint, text, 0, nil)
+func InputTextWithHint(label, hint string, text *string) bool {
+	return InputTextWithHintV(label, hint, text, 0, nil)
+}
+
+
+
 // ColorEdit3 calls ColorEdit3V(label, col, 0)
 func ColorEdit3(label string, col *[3]float32) bool {
 	return ColorEdit3V(label, col, 0)

@@ -341,6 +341,10 @@ IggBool iggInputTextMultiline(char const *label, char* buf, unsigned int bufSize
                                     iggInputTextCallbackWrapper, reinterpret_cast<void *>(callbackKey)) ? 1 : 0;
 }
 
+IggBool iggInputTextWithHint(const char* label, const char* hint, char* buf, unsigned int bufSize, int flags, int callbackKey) {
+   return ImGui::InputTextWithHint(label, hint, buf, static_cast<size_t>(bufSize), flags, iggInputTextCallbackWrapper, reinterpret_cast<void *>(callbackKey)) ? 1 : 0;
+}
+
 IggBool iggColorEdit3(char const *label, float *col, int flags)
 {
    return ImGui::ColorEdit3(label, col, flags) ? 1 : 0;
