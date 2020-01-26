@@ -1009,6 +1009,43 @@ func IsItemHovered() bool {
 	return IsItemHoveredV(HoveredFlagsNone)
 }
 
+// IsItemActive returns if the last item is active. (e.g. button being held, text field being edited. This will continuously return true while holding mouse button on an item. Items that don't interact will always return false)
+func IsItemActive() bool {
+	return C.iggIsItemActive() != 0
+}
+
+// IsWindowAppearing returns whether the current window is appearing.
+func IsWindowAppearing() bool {
+	return C.iggIsWindowAppearing() != 0
+}
+
+// IsWindowCollapsed returns whether the current window is collapsed.
+func IsWindowCollapsed() bool {
+	return C.iggIsWindowCollapsed() != 0
+}
+
+// IsWindowFocusedV returns if current window is focused or its root/child, depending on flags. See flags for options.
+func IsWindowFocusedV(flags int) bool {
+	return C.iggIsWindowFocused(C.int(flags)) != 0
+}
+
+// IsWindowFocused calls IsWindowFocusedV(FocusedFlagsNone)
+func IsWindowFocused() bool {
+	return IsWindowFocusedV(FocusedFlagsNone)
+}
+
+// IsWindowHoveredV returns if current window is hovered (and typically: not blocked by a popup/modal).
+// See flags for options. NB: If you are trying to check whether your mouse should be dispatched to imgui or to your app,
+// you should use the 'io.WantCaptureMouse' boolean for that!
+func IsWindowHoveredV(flags int) bool {
+	return C.iggIsWindowHovered(C.int(flags)) != 0
+}
+
+// IsWindowHovered calls IsWindowHoveredV(HoveredFlagsNone)
+func IsWindowHovered() bool {
+	return IsWindowHoveredV(HoveredFlagsNone)
+}
+
 // IsKeyDown returns true if the corresponding key is currently being held down.
 func IsKeyDown(key int) bool {
 	return C.iggIsKeyDown(C.int(key)) != 0
