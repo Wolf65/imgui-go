@@ -512,7 +512,7 @@ func InputTextV(label string, text *string, flags int, cb InputTextCallback) boo
 	}()
 
 	return C.iggInputText(labelArg, (*C.char)(state.buf.ptr), C.uint(state.buf.size),
-		C.int(flags|inputTextFlagsCallbackResize), state.key) != 0
+		C.int(flags|InputTextFlagsCallbackResize), state.key) != 0
 }
 
 // InputText calls InputTextV(label, string, 0, nil)
@@ -542,7 +542,7 @@ func InputTextMultilineV(label string, text *string, size Vec2, flags int, cb In
 	}()
 
 	return C.iggInputTextMultiline(labelArg, (*C.char)(state.buf.ptr), C.uint(state.buf.size), sizeArg,
-		C.int(flags|inputTextFlagsCallbackResize), state.key) != 0
+		C.int(flags|InputTextFlagsCallbackResize), state.key) != 0
 }
 
 // InputTextMultiline calls InputTextMultilineV(label, text, Vec2{0,0}, 0, nil)
@@ -567,7 +567,7 @@ func InputTextWithHintV(label, hint string, text *string, flags int, cb InputTex
 	}()
 
 	return C.iggInputTextWithHint(labelArg, hintArg, (*C.char)(state.buf.ptr), C.uint(state.buf.size),
-		C.int(flags|inputTextFlagsCallbackResize), state.key) != 0
+		C.int(flags|InputTextFlagsCallbackResize), state.key) != 0
 }
 
 // InputTextWithHint calls InputTextWithHintV(label, hint, text, 0, nil)
